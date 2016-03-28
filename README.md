@@ -15,7 +15,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[module_name](module_name/) | 9.0.0.0.0 | Template module
+[web_widget_darkroom](web_widget_darkroom/) | 9.0.1.0.0 | DarkroomJs Widget
 
 
 Unported addons

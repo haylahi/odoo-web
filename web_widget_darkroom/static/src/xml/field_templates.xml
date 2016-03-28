@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    © 2016-TODAY LasLabs Inc.
+    @license AGPL-3 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<templates id="field_templates" xml:space="preserve">
+    <t t-name="FieldDarkroomImage">
+        <span class="oe_form_field oe_form_field_image" t-att-style="widget.node.attrs.style">
+            <t t-if="!widget.get('effective_readonly')">
+                <div class=".darkroom-toolbar"/>
+                <!--
+                <div class="oe_form_field_image_controls oe_edit_only">
+                  <i class="fa fa-pencil fa-1g pull-left col-md-offset-1 oe_form_binary_file_edit" title="Edit"/>
+                  <i class="fa fa-trash-o fa-1g col-md-offset-5 oe_form_binary_file_clear" title="Clear"/>
+                    <div class="oe_form_binary_progress" style="display: none">
+                        <img t-att-src='_s + "/web/static/src/img/throbber.gif"' width="16" height="16"/>
+                        <b>Uploading ...</b>
+                    </div>
+                    <t t-call="HiddenInputFile">
+                        <t t-set="fileupload_id" t-value="widget.fileupload_id"/>
+                    </t>
+                </div>
+                -->
+            </t>
+        </span>
+    </t>
+</templates>
