@@ -125,9 +125,10 @@ odoo.define('web_widget_darkroom.darkroom_zoom', function(require){
         console.log('Setting zoom factor');
         console.log(zoomLevel);
         console.log(point);
-        this.zoomLevel = zoomLevel;
         if (point) {
-            this._zoom(point);
+          var canvas = this.darkroom.canvas;
+          canvas.zoomToPoint(point, zoomLevel + 1); // Add one for zero index
+          this.zoomLevel = zoomLevel;
         }
         return true;
       },
@@ -161,12 +162,6 @@ odoo.define('web_widget_darkroom.darkroom_zoom', function(require){
       
       zoomOut: function() {
         return this.setZoomLevel(-this.zoomFactor, this.getCenterPoint());
-      },
-      
-      _zoom: function(point) {
-        var canvas = this.darkroom.canvas;
-        var zoomTo = this.zoomLevel + 1; // Add one for zero index
-        canvas.zoomToPoint(point, zoomTo);
       },
       
       onMouseWheel: function(event) {

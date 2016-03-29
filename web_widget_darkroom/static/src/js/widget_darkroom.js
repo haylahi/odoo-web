@@ -16,8 +16,9 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
   var FieldDarkroomImage = common.AbstractField.extend(common.ReinitializeFieldMixin, {
     className: 'darkroom-widget',
     template: 'FieldDarkroomImage',
+    placeholder: "/web/static/src/img/placeholder.png",
     darkroom: null,
-    no_rerender: true,
+    no_rerender: false,
     
     _init_darkroom_icons: function() {
       var element = document.createElement('div');
@@ -113,10 +114,13 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
           }
         },
         active: function(value) {
-          if (value)
+          if (value){
             this.element.classList.add('darkroom-button-active');
-          else
+            this.element.disabled = false;
+          } else {
             this.element.classList.remove('darkroom-button-active');
+            this.element.disabled = true;
+          }
         },
         hide: function(value) {
           if (value)
@@ -131,11 +135,13 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
       
     },
     
+    destroy_content: function() {
+      console.log('Destroying Darkroom Obj');
+      this.darkroom.selfDestroy();
+    },
+    
     render_value: function() {
-      
-      this._init_darkroom_ui();
-      this._init_darkroom_plugins();
-      
+      console.log('Rerendering');
       var url;
       if (this.get('value') && !utils.is_bin_size(this.get('value'))) {
         url = 'data:image/png;base64,' + this.get('value');
@@ -153,10 +159,15 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
       } else {
         url = this.placeholder;
       }
+      
       var $img = $(QWeb.render("FieldBinaryImage-img", { widget: this, url: url }));
       this.$el.find('> img').remove();
       this.$el.append($img);
       
+      if (!this.darkroom) {
+        this._init_darkroom_ui();
+        this._init_darkroom_plugins();
+      }
       this.darkroom = new Darkroom($img.get(0));
     },
     
