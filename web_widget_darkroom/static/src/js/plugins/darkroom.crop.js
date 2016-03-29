@@ -201,15 +201,18 @@ odoo.define('web_widget_darkroom.darkroom_crop', function(require){
         var buttonGroup = this.darkroom.toolbar.createButtonGroup();
     
         this.cropButton = buttonGroup.createButton({
-          image: 'fa fa-crop'
+          image: 'fa fa-crop',
+          editOnly: true,
         });
         this.okButton = buttonGroup.createButton({
           image: 'fa fa-check',
+          editOnly: true,
           type: 'success',
           hide: true
         });
         this.cancelButton = buttonGroup.createButton({
           image: 'fa fa-times',
+          editOnly: true,
           type: 'danger',
           hide: true
         });

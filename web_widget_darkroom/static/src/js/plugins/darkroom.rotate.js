@@ -34,11 +34,13 @@ odoo.define('web_widget_darkroom.darkroom_rotate', function(require){
         var buttonGroup = this.darkroom.toolbar.createButtonGroup();
     
         var leftButton = buttonGroup.createButton({
-          image: 'fa fa-undo'
+          image: 'fa fa-undo oe_edit_only',
+          editOnly: true,
         });
     
         var rightButton = buttonGroup.createButton({
-          image: 'fa fa-repeat'
+          image: 'fa fa-repeat oe_edit_only',
+          editOnly: true,
         });
     
         leftButton.addEventListener('click', this.rotateLeft.bind(this));

@@ -46,12 +46,14 @@ odoo.define('web_widget_darkroom.darkroom_history', function(require){
   
         this.backButton = buttonGroup.createButton({
           image: 'fa fa-step-backward',
-          disabled: true
+          disabled: true,
+          editOnly: true,
         });
   
         this.forwardButton = buttonGroup.createButton({
           image: 'fa fa-step-forward',
-          disabled: true
+          disabled: true,
+          editOnly: true,
         });
   
         this.backButton.addEventListener('click', this.undo.bind(this));

@@ -47,7 +47,8 @@ odoo.define('web_widget_darkroom.darkroom_zoom', function(require){
         this.okButton = buttonGroup.createButton({
           image: 'fa fa-check',
           type: 'success',
-          hide: true
+          hide: true,
+          editOnly: true,
         });
         this.cancelButton = buttonGroup.createButton({
           image: 'fa fa-times',

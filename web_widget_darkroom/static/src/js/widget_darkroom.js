@@ -71,11 +71,12 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
       ButtonGroup.prototype = {
         createButton: function(options) {
           var defaults = {
-            image: 'help',
+            image: 'fa fa-question-circle',
             type: 'default',
             group: 'default',
             hide: false,
-            disabled: false
+            disabled: false,
+            editOnly: false,
           };
       
           options = Darkroom.Utils.extend(options, defaults);
@@ -83,7 +84,10 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
           var buttonElement = document.createElement('button');
           buttonElement.type = 'button';
           buttonElement.className = 'darkroom-button darkroom-button-' + options.type;
-          buttonElement.innerHTML = '<i class="' + options.image + ' fa-2x"></i>'
+          buttonElement.innerHTML = '<i class="' + options.image + ' fa-2x"></i>';
+          if (options.editOnly) {
+            buttonElement.classList.add('oe_edit_only');
+          }
           // buttonElement.innerHTML = '<svg class="darkroom-icon"><use xlink:href="#' + options.image + '" /></svg>';
           this.element.appendChild(buttonElement);
       
