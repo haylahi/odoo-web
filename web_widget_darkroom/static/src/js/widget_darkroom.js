@@ -141,7 +141,7 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
     
     destroy_content: function() {
       console.log('Destroying Darkroom Obj');
-      this.darkroom.selfDestroy();
+      this.$el.find('> div').remove();
     },
     
     render_value: function() {
@@ -164,14 +164,16 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
         url = this.placeholder;
       }
       
-      var $img = $(QWeb.render("FieldBinaryImage-img", { widget: this, url: url }));
-      this.$el.find('> img').remove();
-      this.$el.append($img);
-      
       if (!this.darkroom) {
         this._init_darkroom_ui();
         this._init_darkroom_plugins();
+      }else{
+        this.destroy_content();
       }
+      
+      var $img = $(QWeb.render("FieldBinaryImage-img", { widget: this, url: url }));
+      this.$el.append($img);
+      
       this.darkroom = new Darkroom($img.get(0));
     },
     
