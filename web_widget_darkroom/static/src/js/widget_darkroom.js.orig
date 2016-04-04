@@ -38,6 +38,7 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
       require('web_widget_darkroom.darkroom_history').DarkroomPluginHistory();
       require('web_widget_darkroom.darkroom_rotate').DarkroomPluginRotate();
       require('web_widget_darkroom.darkroom_zoom').DarkroomPluginZoom();
+      require('web_widget_darkroom.darkroom_save').DarkroomPluginSave();
     },
 
     _init_darkroom_ui: function() {
@@ -91,10 +92,13 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
           if (options.editOnly) {
             buttonElement.classList.add('oe_edit_only');
           }
+<<<<<<< Updated upstream
           if (options.addClass) {
             buttonElement.classList.add(options.addClass);
           }
           // buttonElement.innerHTML = '<svg class="darkroom-icon"><use xlink:href="#' + options.image + '" /></svg>';
+=======
+>>>>>>> Stashed changes
           this.element.appendChild(buttonElement);
       
           var button = new Button(buttonElement);
@@ -146,18 +150,12 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
     },
     
     destroy_content: function() {
-      if (this.darkroom && this.darkroom.containerElement) {
-        this.darkroom.containerElement.remove();
-        this.darkroom = null;
-      }
-    },
-    
-    set_value: function(value){
-      this.destroy_content();
-      return this._super(value);
+      console.log('Destroying Darkroom Obj');
+      this.darkroom.selfDestroy();
     },
     
     render_value: function() {
+      console.log('Rerendering');
       var url;
       if (this.get('value') && !utils.is_bin_size(this.get('value'))) {
         url = 'data:image/png;base64,' + this.get('value');
@@ -184,15 +182,57 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
         this._init_darkroom_ui();
         this._init_darkroom_plugins();
       }
-      
       this.darkroom = new Darkroom($img.get(0));
       this.darkroom.widget = this;
     },
     
-    commit_value: function(callback) {
-      this.set_value(
-        this.darkroom.sourceImage.toDataURL().split(',')[1]
-      );
+    on_save_as: function(e) {
+      
+      framework.blockUI();
+      var value = this.darkroom.sourceImage.toDataURL();
+      var c = crash_manager;
+      var filename_fieldname = this.node.attrs.filename;
+      var filename_field = this.view.fields && this.view.fields[filename_fieldname];
+      
+      var filereader = new FileReader();
+      filereader.onload = function(upload) {
+        var data = upload.target.result;
+        data = data.split(',')[1];
+        $.post({
+          url: '/web/binary/upload',
+          
+        })
+      };
+      filereader.readAsDataURL(new Blob(value));
+      
+      this.$el.find('form.o_form_darkroom_form input[name=ufile]').val(value);
+      this.$el.find('form.o_form_darkroom_form input[name=session_id]').val(this.session.session_id);
+      this.$el.find('form.o_form_darkroom_form').submit();
+      
+      var $form = $(parentEl).find('form');
+      $form.find('input[name=ufile]').val(value);
+    
+    },
+    
+    init: function(field_manager, node) {
+        var self = this;
+        this._super(field_manager, node);
+        this.binary_value = false;
+        this.useFileAPI = !!window.FileReader;
+        this.max_upload_size = 25 * 1024 * 1024; // 25Mo
+        if (!this.useFileAPI) {
+            this.fileupload_id = _.uniqueId('oe_fileupload');
+            $(window).on(this.fileupload_id, function() {
+                var args = [].slice.call(arguments).slice(1);
+                self.on_file_uploaded.apply(self, args);
+            });
+        }
+    },
+    stop: function() {
+        if (!this.useFileAPI) {
+            $(window).off(this.fileupload_id);
+        }
+        this._super.apply(this, arguments);
     },
     
   });

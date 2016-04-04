@@ -7,23 +7,6 @@ odoo.define('web_widget_darkroom.darkroom_zoom', function(require){
   'use strict';
 
   var DarkroomPluginZoom = function(){
-
-    var Zoom = Darkroom.Transformation.extend({
-      applyTransformation: function(canvas, image, next) {
-        
-        image.set({
-          top: top,
-          left: left,
-          scaleX: scaleX,
-          scaleY: scaleY,
-        })
-        
-        image.setCoords();
-        canvas.renderAll();
-        
-        next();
-      }
-    });
   
     Darkroom.plugins['zoom'] = Darkroom.Plugin.extend({
       
