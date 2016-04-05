@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/laslabs/odoo-web.svg?branch=9.0)](https://travis-ci.org/laslabs/odoo-module_template)
-[![Coverage Status](https://coveralls.io/repos/laslabs/odoo-web/badge.png?branch=9.0)](https://coveralls.io/r/LasLabs/odoo-module_template)
+[![Build Status](https://travis-ci.org/laslabs/odoo-web.svg?branch=release%2F9.0)](https://travis-ci.org/laslabs/odoo-web)
+[![Coverage Status](https://coveralls.io/repos/laslabs/odoo-web/badge.png)](https://coveralls.io/r/LasLabs/odoo-web)
 
 Odoo Web
 ========
