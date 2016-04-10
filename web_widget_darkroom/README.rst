@@ -6,15 +6,26 @@
 Odoo DarkroomJS Widget
 ======================
 
-This module provides a DarkroomJS web widget for use with images fields.
+This module provides a `DarkroomJS`_ web widget for use with images fields.
 
+.. _DarkroomJS: https://github.com/MattKetmo/darkroomjs 
+
+This widget will allow you to perform the following actions on images:
+
+ * Zoom
+ * Rotate
+ * Crop
+ * Step back in history client-side (before save)
+ 
 
 Usage
 =====
 
 To use this module, you need to:
 
-* See Example module for usage - https://repo.laslabs.com/projects/ODOO/repos/web/browse/web_widget_darkroom_example
+* See `Example` module for usage
+
+.. _Example: https://repo.laslabs.com/projects/ODOO/repos/web/browse/web_widget_darkroom_example
 
 
 Credits

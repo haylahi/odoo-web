@@ -16,7 +16,9 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [web_widget_darkroom](web_widget_darkroom/) | 9.0.1.0.0 | DarkroomJs Widget
-
+[web_widget_darkroom_example](web_widget_darkroom_example/) | 9.0.1.0.0 | DarkroomJs Widget Example Implementation
+[web_widget_slick](web_widget_slick/) | 9.0.1.0.0 | Slick Carousel Widget
+[web_widget_slick_example](web_widget_slick_example/) | 9.0.1.0.0 | Slick Carousel Widget Example Implementation
 
 Unported addons
 ---------------
