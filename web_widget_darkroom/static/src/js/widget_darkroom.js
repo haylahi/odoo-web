@@ -22,6 +22,37 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
     darkroom: null,
     no_rerender: false,
     
+    defaults: {
+      // Canvas initialization size
+      minWidth: 100,
+      minHeight: 100,
+      maxWidth: 700,
+      maxHeight: 500,
+    
+      // Plugins options
+      plugins: {
+        crop: {
+          minHeight: 50,
+          minWidth: 50,
+          ratio: 1
+        },
+      },
+      
+      // Post initialization method
+      initialize: function() {
+        // Active crop selection
+        // this.plugins['crop'].requireFocus();
+        // Add custom listener
+        // this.addEventListener('core:transformation', function() { /* ... */ });
+      }
+      
+    },
+    
+    init: function(field_manager, node) {
+      this._super(field_manager, node);
+      this.options = _.defaults(this.options, this.defaults);
+    },
+    
     _init_darkroom_icons: function() {
       var element = document.createElement('div');
       element.id = 'darkroom-icons';
@@ -40,10 +71,16 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
       require('web_widget_darkroom.darkroom_zoom').DarkroomPluginZoom();
     },
 
+    _init_darkroom: function() {
+      if (!this.darkroom) {
+        this._init_darkroom_icons();
+        this._init_darkroom_ui();
+        this._init_darkroom_plugins();
+      }
+    },
+    
     _init_darkroom_ui: function() {
 
-      this._init_darkroom_icons();
-    
       Darkroom.UI = {
         Toolbar: Toolbar,
         ButtonGroup: ButtonGroup,
@@ -158,6 +195,7 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
     },
     
     render_value: function() {
+      this._init_darkroom();
       var url;
       if (this.get('value') && !utils.is_bin_size(this.get('value'))) {
         url = 'data:image/png;base64,' + this.get('value');
@@ -179,13 +217,7 @@ odoo.define('web_widget_darkroom.darkroom_widget', function(require){
       var $img = $(QWeb.render("FieldBinaryImage-img", { widget: this, url: url }));
       this.$el.find('> img').remove();
       this.$el.append($img);
-      
-      if (!this.darkroom) {
-        this._init_darkroom_ui();
-        this._init_darkroom_plugins();
-      }
-      
-      this.darkroom = new Darkroom($img.get(0));
+      this.darkroom = new Darkroom($img.get(0), this.options);
       this.darkroom.widget = this;
     },
     
