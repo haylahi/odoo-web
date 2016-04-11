@@ -21,7 +21,7 @@
             <script src="/web_widget_darkroom/static/src/js/plugins/darkroom.crop.js" />
             <script src="/web_widget_darkroom/static/src/js/plugins/darkroom.history.js" />
             <script src="/web_widget_darkroom/static/src/js/plugins/darkroom.rotate.js" />
-            
+            <script src="/web_widget_darkroom/static/src/js/plugins/darkroom.save.js" />
             <script src="/web_widget_darkroom/static/src/js/plugins/darkroom.zoom.js" />
             
             <script src="/web_widget_darkroom/static/src/js/widget_darkroom.js" />

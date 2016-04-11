@@ -3,7 +3,7 @@
 
 [report]
 include =
-    */laslabs/odoo-module_template/*
+    */laslabs/odoo-web/*
 
 omit =
     */tests/*
