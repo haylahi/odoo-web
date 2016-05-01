@@ -12,9 +12,8 @@ This module provides a Slick Carousel widget for use in Odoo.
 Usage
 =====
 
-Default usage is on a One2many attachment field, as defined below:
+Default usage is on a One2many attachment field, as defined below::
 
-.. highlight:: python
     class SlickExample(models.Model):
         _name = 'slick.example'
         _description = 'Slick Example Model'
@@ -23,15 +22,12 @@ Default usage is on a One2many attachment field, as defined below:
             comodel_name='ir.attachment',
             inverse_name='res_id',
         )
-.. highlight:: none
 
 Assuming the above model, you would use add a Slick Carousel on the
 ``image_ids`` column by using the following field definition in the
-model's form view:
+model's form view::
 
-.. highlight:: html
     <field name="image_ids" widget="one2many_slick_images" options="{}"/>
-.. highlight:: none
 
 Example implementation - https://repo.laslabs.com/projects/ODOO/repos/web/browse/web_widget_slick_example
 
