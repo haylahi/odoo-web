@@ -27,8 +27,8 @@ To use this module, you need to:
 * Add the to any One2many image relation by using the `darkroom` widget. Options can be passed through to Darkroom using the `options` key:
 
 .. highlight:: html
-<field name="image_ids" widget="darkroom"
-                        options="{'minWidth': 100}" />
+<field name="image_id" widget="darkroom"
+                       options="{'minWidth': 100}" />
 .. highlight:: none
 
 The Odoo DarkroomJS widget passes options directly through to Darkroom, which are copied from the source below:

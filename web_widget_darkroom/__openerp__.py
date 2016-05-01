@@ -4,8 +4,9 @@
 
 {
     "name": "Web Darkroom Image Widget",
-    "summary": "Adds Darkroom.js Image Widget",
-    "version": "9.0.1.0.0",
+    "summary": "Widget provides a dynamic, editable canvas for use on any"
+    " One2many image field in backend form views.",
+    "version": "9.0.1.0.1",
     "category": "Web",
     "website": "https://laslabs.com/",
     "author": "LasLabs",
