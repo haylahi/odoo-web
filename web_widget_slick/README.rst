@@ -12,9 +12,45 @@ This module provides a Slick Carousel widget for use in Odoo.
 Usage
 =====
 
-To use this module, you need to:
+Default usage is on a One2many attachment field, as defined below:
 
-* See Example module for usage - https://repo.laslabs.com/projects/ODOO/repos/web/browse/web_widget_slick_example
+.. highlight:: python
+    class SlickExample(models.Model):
+        _name = 'slick.example'
+        _description = 'Slick Example Model'
+        image_ids = fields.One2many(
+            name='Images',
+            comodel_name='ir.attachment',
+            inverse_name='res_id',
+        )
+.. highlight:: none
+
+Assuming the above model, you would use add a Slick Carousel on the
+``image_ids`` column by using the following field definition in the
+model's form view:
+
+.. highlight:: html
+    <field name="image_ids" widget="one2many_slick_images" options="{}"/>
+.. highlight:: none
+
+Example implementation - https://repo.laslabs.com/projects/ODOO/repos/web/browse/web_widget_slick_example
+
+Options
+=======
+
+The widget passes options directly through to Slick, so any `setting
+available to Slick`_ is available to the widget. Additional options
+specific to Odoo are:
+
++-----------------+--------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Name            | Type         | Default             | Description                                                                                                                                                                 |
++=================+==============+=====================+=============================================================================================================================================================================+
+| ``fieldName``   | ``String``   | ``datas``           | Field to lookup on relation table. Defaults to ``datas``, which is the data field used in ``ir.attachment`` table. This would be used to define a custom attachment model   |
++-----------------+--------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``modelName``   | ``String``   | ``ir.attachment``   | Model of attachment relation. This would be used to define a custom attachment model instead of default ``ir.attachment``                                                   |
++-----------------+--------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. _setting available to Slick: http://kenwheeler.github.io/slick/#settings
 
 
 Credits

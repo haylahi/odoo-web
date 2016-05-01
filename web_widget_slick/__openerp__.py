@@ -4,8 +4,9 @@
 
 {
     "name": "Web Slick Widget",
-    "summary": "Adds Slick JavaScript slider widget",
-    "version": "9.0.1.0.0",
+    "summary": "Adds SlickJS slider widget for use as a carousel on Many2one"
+    " attachment fields in backend form views.",
+    "version": "9.0.1.0.1",
     "category": "Web",
     "website": "https://laslabs.com/",
     "author": "LasLabs",

@@ -6,7 +6,7 @@
 -->
 
 <odoo>
-    <template id="assets_darkroom" name="web_widget_darkroom Assets" inherit_id="web.assets_common">
+    <template id="assets_darkroom" name="web_widget_darkroom Assets" inherit_id="web.assets_backend">
         <xpath expr="//script[last()]" position="after">
             <!--<link href="/web_widget_darkroom/static/lib/darkroomjs/build/darkroom.css" rel="stylesheet" type="text/css" />-->
             <link href="/web_widget_darkroom/static/src/css/darkroom.css" rel="stylesheet" type="text/css" />

@@ -6,7 +6,7 @@
 -->
 
 <odoo>
-    <template id="assets_slick" name="web_widget_slick Assets" inherit_id="web.assets_common">
+    <template id="assets_slick" name="web_widget_slick Assets" inherit_id="web.assets_backend">
         <xpath expr="//script[last()]" position="after">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css" rel="stylesheet" type="text/css" />
             <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css" rel="stylesheet" type="text/css" />
